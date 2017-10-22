@@ -1,0 +1,26 @@
+#graph-container {
+  position: relative;
+}
+
+.linechart_path {
+  stroke-width: 3;
+  fill: none;
+}
+.linechart_axis {
+  stroke: #bdc3c7;
+  stroke-width: 1;
+}
+
+.linechart_area {
+  fill: #2196F3;
+  stroke: none;
+  opacity: .4;
+}
+
+.linechart_point {
+  fill: #fff;
+}
+
+.linechart {
+  padding: 6em 5em 3em 5em;
+}

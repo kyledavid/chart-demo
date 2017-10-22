@@ -1,0 +1,25 @@
+.tooltip {
+  position: absolute;
+  top: 10px;
+  padding: .5em;
+  width: 5em;
+}
+
+.tool-bg {
+  position: absolute;
+  background-color: #2196F3;
+  border-radius: 5px;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+}
+
+.tooltip .tool-date,
+.tooltip .tool-price {
+  display: block;
+  position: relative;
+  z-index: 2;
+  color: #fff;
+}
