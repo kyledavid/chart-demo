@@ -41,7 +41,7 @@ class LineChart extends Component {
         className="linechart_point"
         style={{stroke: color}}
         r={pointRadius}
-        cx={this.getSvgX(point.x)}
+        cx={this.props.xPos}
         cy={this.getSvgY(point.y)}
       />
     )
@@ -53,7 +53,7 @@ class LineChart extends Component {
   makeAxis() {
     const x = this.getX(), y = this.getY()
 
-    return this.props.xPos ? (
+    return  (
       <g className="linechart_axis">
         <line
           x1={this.getSvgX(x.min)} y1={this.getSvgY(y.min)}
@@ -63,7 +63,6 @@ class LineChart extends Component {
           x2={this.getSvgX(x.max)} y2={this.getSvgY(y.min)} />
       </g>
     )
-    : null
 
   }
   makeHoverLine() {
