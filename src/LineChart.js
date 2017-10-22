@@ -98,7 +98,7 @@ class LineChart extends Component {
     const x = this.getX()
     const y = this.getY()
 
-    pathD += "L " + this.getSvgX(x.max) + " " + this.getSvgY(y.min) + " " + "L " + this.getSvgX(x.min) + " " + this.getSvgY(y.min)
+    pathD += "L " + this.getSvgX(x.max) + " " + this.getSvgY(y.min) + " L " + this.getSvgX(x.min) + " " + this.getSvgY(y.min)
     return (
       <path className="linechart_area" d={pathD} style={{stroke:color}} />
     )
@@ -110,7 +110,6 @@ class LineChart extends Component {
     const adjustment = (svgLocation.width - svgWidth) / 2; //takes padding into consideration
     const relativeLoc = e.clientX - svgLocation.left - adjustment
 
-    console.log(relativeLoc)
     if (relativeLoc < 0 || relativeLoc > 700) {
       this.stopHover()
     } else {
@@ -157,10 +156,11 @@ class LineChart extends Component {
     }
   }
   render() {
-    const {svgWidth, svgHeight} = this.props
+    const {activePoint, data, svgWidth, svgHeight} = this.props
+    const point = data[activePoint]
     return (
       <div id="graph-container">
-        {this.props.xPos ? <Tooltip xPos={this.props.xPos} point={{date: 'July 24 17', price: 5687}} /> : null}
+        {this.props.xPos ? <Tooltip xPos={this.props.xPos} point={{date: point.d, price: point.p}} /> : null}
         <svg
           className="linechart"
           viewBox={`0 0 ${svgWidth} ${svgHeight}`}
@@ -182,7 +182,10 @@ class LineChart extends Component {
 LineChart.propTypes = {
   activePoint: PropTypes.number,
   color: PropTypes.string,
-  data: PropTypes.arrayOf(PropTypes.object),
+  data: PropTypes.arrayOf(PropTypes.shape({
+    x: PropTypes.number.isRequired,
+    y: PropTypes.number.isRequired,
+  })),
   labelDims: PropTypes.shape({
     height: PropTypes.number,
     width: PropTypes.number,
@@ -199,7 +202,7 @@ LineChart.propTypes = {
 LineChart.defaultProps = {
   data: [],
   color: '#2196F3',
-  svgHeight: 300,
+  svgHeight: 600,
   svgWidth: 700,
   pointRadius: 5,
   labelDims: {height: 10, width: 40},

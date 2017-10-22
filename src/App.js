@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import moment from 'moment'
 import './App.css';
 import LineChart from './LineChart'
 class App extends Component {
@@ -8,9 +9,41 @@ class App extends Component {
       xPos: null,
       activePoint: null,
       data: [],
+      realData: [],
+      fetchingData: true,
     }
     this.setXPos = this.setXPos.bind(this)
     this.setActive = this.setActive.bind(this)
+  }
+
+  componentDidMount() {
+      const getData = () => {
+        const url = 'https://api.coindesk.com/v1/bpi/historical/close.json'
+
+        fetch(url).then( r => r.json())
+          .then((bitcoinData) => {
+            const sortedData = []
+            let count = 0
+            for (let date in bitcoinData.bpi) {
+              sortedData.push({
+                d: moment(date).format('MMM DD'),
+                p: bitcoinData.bpi[date].toLocaleString('us-EN', {style: 'currency', currency: 'USD'}),
+                x: count,
+                y: bitcoinData.bpi[date]
+              })
+              count ++
+            }
+            console.log(sortedData)
+            this.setState({
+              realData: sortedData,
+              fetchingData: false,
+            })
+          })
+          .catch((e) => {
+            console.log(e)
+          })
+      }
+      getData()
   }
 
   setActive(activePoint) {
@@ -41,18 +74,19 @@ class App extends Component {
     })
   }
   render() {
-    return (
+    return !this.state.fetchingData ? (
       <div className="App">
         <div className="header">react svg line chart [part 1]</div>
         <LineChart
-          data={this.state.data}
+          data={this.state.realData}
           setXPos={this.setXPos}
           xPos={this.state.xPos}
           activePoint={this.state.activePoint}
           setActive={this.setActive}
         />
       </div>
-    );
+    )
+    : <div className="App"></div>
   }
 }
 export default App;
