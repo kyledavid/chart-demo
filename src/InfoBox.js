@@ -1,12 +1,23 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
+import moment from 'moment'
+import './InfoBox.css'
 
 class InfoBox extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      currentPrice: null,
+      monthChangeD: null,
+      monthChangeP: null,
+      updatedAt: null,
+    }
+  }
   componentDidMount() {
     this.getData = () => {
       const {data} = this.props
       const url = 'https://api.coindesk.com/v1/bpi/currentprice.json'
-
+      console.log("fetched")
       fetch(url).then(r => r.json())
         .then((bitcoinData) => {
           const price = bitcoinData.bpi.USD.rate_float
@@ -31,9 +42,23 @@ class InfoBox extends Component {
     clearInterval(this.refresh)
   }
   render() {
-    return (
-      <div></div>
+    return this.state.updatedAt ? (
+      <section id="info-box">
+        <div className="ib-column">
+          <span className="ib-main">${this.state.currentPrice.toFixed(2)}</span>
+          <span className="ib-caption">{'Updated' + moment(this.state.updatedAt).fromNow()}</span>
+        </div>
+        <div className="ib-column">
+          <span className="ib-main">{this.state.monthChangeD}</span>
+          <span className="ib-caption">Change Since Last Month (USD)</span>
+        </div>
+        <div className="ib-column">
+          <span className="ib-main">{this.state.monthChangeP}</span>
+          <span className="ib-caption">Change Since Last Month (%)</span>
+        </div>
+      </section>
     )
+    : <div></div>
   }
 }
 

@@ -1,0 +1,22 @@
+#info-box {
+  display: flex;
+  padding-left: 80px;
+  transform: translateY(50px);
+}
+
+.ib-main,
+.ib-caption {
+  display: block;
+  color: #2196F3;
+}
+.ib-main {
+  font-size: 1.8em;
+}
+
+.ib-caption {
+  font-size: .7em;
+}
+
+.ib-column {
+  flex: 1;
+}
