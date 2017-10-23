@@ -28,6 +28,7 @@ class App extends Component {
             for (let date in bitcoinData.bpi) {
               sortedData.push({
                 d: moment(date).format('MMM DD'),
+                fd: moment(date).format('MMMM DD YYYY'),
                 p: bitcoinData.bpi[date].toLocaleString('us-EN', {style: 'currency', currency: 'USD'}),
                 x: count,
                 y: bitcoinData.bpi[date]

@@ -16,24 +16,23 @@ class LineChart extends Component {
     const {data, labelDims, svgHeight, svgWidth} = this.props
     return (
       <g>
-        <text transform={`translate(-${labelDims.width}, -${labelDims.height})`}>
+        <text transform={`translate(-${labelDims.width * 2}, ${labelDims.height})`}>
           ${this.getY().max.toFixed(2)}
         </text>
-        <text transform={`translate(-${labelDims.width}, ${svgHeight + labelDims.height})`}>
+        <text transform={`translate(-${labelDims.width * 2}, ${svgHeight - labelDims.height})`}>
           ${this.getY().min.toFixed(2)}
         </text>
-        <text transform={`translate(${svgWidth}, ${svgHeight + labelDims.height})`}>
-          {data[30].d}
+        <text transform={`translate(${svgWidth - labelDims.width}, ${svgHeight + labelDims.height})`}>
+          {data[30].fd}
         </text>
-        <text transform={`translate(${labelDims.width}, ${svgHeight + labelDims.height})`}>
-          {data[0].d}
+        <text transform={`translate(0, ${svgHeight + labelDims.height})`}>
+          {data[0].fd}
         </text>
       </g>
     )
   }
   makeActiveCircle() {
     const {data, activePoint} = this.props
-    const point = data[activePoint]
     const {color, pointRadius} = this.props
 
     return (
@@ -41,8 +40,8 @@ class LineChart extends Component {
         className="linechart_point"
         style={{stroke: color}}
         r={pointRadius}
-        cx={this.props.xPos}
-        cy={this.getSvgY(point.y)}
+        cx={this.getSvgX(data[activePoint].x)}
+        cy={this.getSvgY(data[activePoint].y)}
       />
     )
   }
@@ -178,7 +177,7 @@ class LineChart extends Component {
           {this.makeAxis()}
           {this.makeLabels()}
           {this.props.xPos ? this.makeHoverLine() : null}
-          {this.props.activePoint ? this.makeActiveCircle() : null}
+          {this.props.activePoint || this.props.activePoint === 0 ? this.makeActiveCircle() : null}
         </svg>
       </div>
     );
@@ -211,6 +210,6 @@ LineChart.defaultProps = {
   svgHeight: 300,
   svgWidth: 700,
   pointRadius: 5,
-  labelDims: {height: 20, width: 40},
+  labelDims: {height: 17, width: 40},
 }
 export default LineChart;
