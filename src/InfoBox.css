@@ -4,6 +4,11 @@
   transform: translateY(50px);
 }
 
+div.ib-column:nth-of-type(2) {
+  border-left: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+}
+
 .ib-main,
 .ib-caption {
   display: block;
