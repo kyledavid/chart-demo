@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import moment from 'moment'
 import './App.css';
 import LineChart from './LineChart'
+import InfoBox from './InfoBox'
 class App extends Component {
   constructor(props) {
     super(props)
@@ -77,6 +78,9 @@ class App extends Component {
     return !this.state.fetchingData ? (
       <div className="App">
         <div className="header">react svg line chart [part 1]</div>
+        <InfoBox
+          data={this.state.realData}
+        />
         <LineChart
           data={this.state.realData}
           setXPos={this.setXPos}

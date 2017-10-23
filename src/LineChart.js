@@ -13,20 +13,20 @@ class LineChart extends Component {
     this.props.setActive(null)
   }
   makeLabels() {
-    const {labelDims, svgHeight, svgWidth} = this.props
+    const {data, labelDims, svgHeight, svgWidth} = this.props
     return (
       <g>
         <text transform={`translate(-${labelDims.width}, -${labelDims.height})`}>
-          $2,877.39
+          ${this.getY().max.toFixed(2)}
         </text>
         <text transform={`translate(-${labelDims.width}, ${svgHeight + labelDims.height})`}>
-          $1,938.94
+          ${this.getY().min.toFixed(2)}
         </text>
         <text transform={`translate(${svgWidth}, ${svgHeight + labelDims.height})`}>
-          October 20
+          {data[30].d}
         </text>
         <text transform={`translate(${labelDims.width}, ${svgHeight + labelDims.height})`}>
-          September 20
+          {data[0].d}
         </text>
       </g>
     )
@@ -136,8 +136,14 @@ class LineChart extends Component {
     return (x / this.getX().max * svgWidth);
   }
   getSvgY(y) {
-    const {svgHeight} = this.props;
-    return svgHeight - (y / this.getY().max * svgHeight);
+    const {svgHeight} = this.props
+    const yMax = this.getY().max
+    const yMin = this.getY().min
+    const scale = yMax - yMin
+    const difference = y - yMin
+
+    console.log(y / 6013)
+    return svgHeight - (difference / scale  * svgHeight)
   }
   // GET MAX & MIN X
   getX() {
@@ -202,9 +208,9 @@ LineChart.propTypes = {
 LineChart.defaultProps = {
   data: [],
   color: '#2196F3',
-  svgHeight: 600,
+  svgHeight: 300,
   svgWidth: 700,
   pointRadius: 5,
-  labelDims: {height: 10, width: 40},
+  labelDims: {height: 20, width: 40},
 }
 export default LineChart;

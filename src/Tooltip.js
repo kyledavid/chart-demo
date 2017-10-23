@@ -20,7 +20,7 @@ class Tooltip extends Component {
 
 Tooltip.propTypes = {
   point: PropTypes.shape({
-    date: PropTypes.number.isRequired,
+    date: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
   }),
   xPos: PropTypes.number.isRequired,
