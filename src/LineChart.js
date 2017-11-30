@@ -8,7 +8,6 @@ class LineChart extends Component {
     this.stopHover = this.stopHover.bind(this)
   }
   stopHover() {
-
     this.props.setXPos(null)
     this.props.setActive(null)
   }
@@ -109,7 +108,7 @@ class LineChart extends Component {
     const adjustment = (svgLocation.width - svgWidth) / 2; //takes padding into consideration
     const relativeLoc = e.clientX - svgLocation.left - adjustment
 
-    if (relativeLoc < 0 || relativeLoc > 700) {
+    if (relativeLoc < 0 || relativeLoc > 760) {
       this.stopHover()
     } else {
       this.props.setXPos(relativeLoc)
@@ -207,8 +206,8 @@ LineChart.propTypes = {
 LineChart.defaultProps = {
   data: [],
   color: '#2196F3',
-  svgHeight: 300,
-  svgWidth: 700,
+  svgHeight: 325,
+  svgWidth: 760,
   pointRadius: 5,
   labelDims: {height: 17, width: 40},
 }

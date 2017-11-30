@@ -1,6 +1,5 @@
 #graph-container {
   position: relative;
-  padding: 0 5em;
 }
 
 .linechart_path {
@@ -23,5 +22,6 @@
 }
 
 .linechart {
-  padding: 6em 5em 3em 5em;
+  width: 760px;
+  padding: 6em 7em 3em 7em;
 }

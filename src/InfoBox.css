@@ -1,5 +1,7 @@
 #info-box {
   display: flex;
+  width: 760px;
+  padding: 0 7em;
 }
 
 div.ib-column:nth-of-type(2) {
