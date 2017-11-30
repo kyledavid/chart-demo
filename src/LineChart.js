@@ -21,10 +21,10 @@ class LineChart extends Component {
         <text transform={`translate(-${labelDims.width * 2}, ${svgHeight - 5})`}>
           ${this.getY().min.toFixed(2)}
         </text>
-        <text transform={`translate(${svgWidth - labelDims.width * 3.4}, ${svgHeight + labelDims.height})`}>
+        <text transform={`translate(${svgWidth - labelDims.width * 3.4}, ${svgHeight + labelDims.height + 8})`}>
           {data[30].fd}
         </text>
-        <text transform={`translate(0, ${svgHeight + labelDims.height})`}>
+        <text transform={`translate(0, ${svgHeight + labelDims.height + 8})`}>
           {data[0].fd}
         </text>
       </g>
