@@ -78,7 +78,7 @@ class App extends Component {
   render() {
     return !this.state.fetchingData ? (
       <div className="App">
-        {/*<div className="header">react svg line chart [part 1]</div>*/}
+        <h1 class="chart-heading">30 Day Bitcoin Price Chart</h1>
         <InfoBox
           data={this.state.realData}
         />

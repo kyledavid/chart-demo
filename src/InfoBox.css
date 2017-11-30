@@ -2,6 +2,7 @@
   display: flex;
   width: 760px;
   padding: 0 7em;
+  margin-top: 2em;
 }
 
 div.ib-column:nth-of-type(2) {

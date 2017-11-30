@@ -3,3 +3,8 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+.chart-heading {
+  padding: 0 112px;
+  width: 760px;
+}
