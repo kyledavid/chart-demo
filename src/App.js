@@ -3,6 +3,8 @@ import moment from 'moment'
 import './App.css';
 import LineChart from './LineChart'
 import InfoBox from './InfoBox'
+var http = require("http");
+
 class App extends Component {
   constructor(props) {
     super(props)
@@ -46,6 +48,11 @@ class App extends Component {
           })
       }
       getData()
+
+      // ping the app every 5 minutes
+      setInterval(function() {
+          http.get("http://<your app name>.herokuapp.com");
+      }, 300000)
   }
 
   setActive(activePoint) {
