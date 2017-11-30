@@ -8,7 +8,7 @@ class Tooltip extends Component {
     const {date, price} = this.props.point
     console.log(this.props)
     return (
-      <div className="tooltip" style={{left: xPos, transform: 'translateX(-50%)'}}>
+      <div className="tooltip" style={{left: xPos, transform: 'translateX(-100%)'}}>
         <div className="tool-bg">
         </div>
         <span className="tool-date">{date}</span>
